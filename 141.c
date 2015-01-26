@@ -22,17 +22,13 @@ public:
     	{
     		return false;
     	}
-    	ListNode *runner = head;
-    	ListNode *temp = runner->next;
-    	while(runner != NULL){
-    		temp = runner->next;
-    		while(temp != NULL){
-    			if(temp == runner){
-    				return true;
-    			}
-    			temp = temp->next;
-    		}
-    		runner = runner->next;
+    	ListNode *slow = head;
+    	ListNode *fast = slow->next;
+    	while(slow&&fast&&fast->next){
+    		slow = slow->next;
+    		fast = fast->next->next;
+    		if (slow == fast)
+    			return true;
     	}
     	return false;
         
