@@ -35,9 +35,7 @@ public:
 	    	preorderTraversal(root->left);
 	    	preorderTraversal(root->right);
     	}
-    	return result;
-
-        
+    	return result;        
     }
 };
 
@@ -55,8 +53,33 @@ public:
     	result.insert(result.end(),res_left.begin(),res_left.end());
     	result.insert(result.end(),res_right.begin(),res_right.end());
     	return result;
-    	
-
         
+    }
+};
+
+//Do it iteratively, using stack
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+    	if (NULL == root){
+    		return vector<int>();
+    	}
+    	vector <int> result;
+    	//result.push_back(root->val);
+    	stack<TreeNode *> treeStack;
+    	TreeNode *temp;
+    	treeStack.push(root);
+    	while(!treeStack.empty()){
+    		temp = treeStack.top();
+    		result.push_back(temp->val);
+    		treeStack.pop();
+    		if (NULL != temp->right){
+	    		treeStack.push(temp->right);
+	    	}
+	    	if (NULL != temp->left){
+	    		treeStack.push(temp->left);
+	    	}
+    	}
+    	return result;        
     }
 };
