@@ -40,3 +40,23 @@ public:
         
     }
 };
+
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+    	if (NULL == root){
+    		return vector<int>();
+    	}
+    	vector<int> result;
+    	result.push_back(root->val);
+    	vector<int> res_left, res_right;
+    	res_left = preorderTraversal(root->left);
+    	res_right = preorderTraversal(root->right);
+    	result.insert(result.end(),res_left.begin(),res_left.end());
+    	result.insert(result.end(),res_right.begin(),res_right.end());
+    	return result;
+    	
+
+        
+    }
+};
